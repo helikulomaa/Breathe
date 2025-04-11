@@ -1,13 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import { RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../types';
+import BreathingAnimation from '../components/BreathingAnimation';
 import { styles } from "../styles";
 
 const PHASES = ['Inhale', 'Hold', 'Exhale'];
 const PHASE_DURATION = 4;
 
+type BreatheScreenRouteProp = RouteProp<RootStackParamList, 'BreatheScreen'>;
+
 const BreatheScreen = ({ navigation }) => {
-  const route = useRoute();
+  const route = useRoute<BreatheScreenRouteProp>();
   const { duration } = route.params;
   const totalDuration = duration * 60;
   const [ongoing, setOngoing] = useState(false);
@@ -16,7 +21,7 @@ const BreatheScreen = ({ navigation }) => {
   const [showDone, setShowDone] = useState(false);
 
   useEffect(() => {
-    let interval;
+    let interval: NodeJS.Timeout;
 
     if (ongoing) {
       interval = setInterval(() => {
@@ -58,7 +63,9 @@ const BreatheScreen = ({ navigation }) => {
       )}
 
       {ongoing && (
-        <Text style={{ fontSize: 32 }}>{PHASES[phaseIndex]}</Text>
+        <>
+          <BreathingAnimation phaseIndex={phaseIndex} duration={PHASE_DURATION} />
+        </>
       )}
 
       {showDone && (
@@ -73,3 +80,4 @@ const BreatheScreen = ({ navigation }) => {
   );
 };
 
+export default BreatheScreen;
