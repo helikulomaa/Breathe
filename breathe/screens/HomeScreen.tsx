@@ -1,14 +1,37 @@
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, Pressable } from 'react-native';
 import { styles } from "../styles";
 
 export default function HomeScreen({ navigation }) {
     return (
         <View style={styles.container}>
-            <Text>Breathe</Text>
-            <Button title="1 min" onPress={() => navigation.navigate('BreatheScreen', { duration: 1 })} />
-            <Button title="3 min" onPress={() => navigation.navigate('BreatheScreen', { duration: 3 })} />
-            <Button title="5 min" onPress={() => navigation.navigate('BreatheScreen', { duration: 5 })} />
-            <Button title="10 min" onPress={() => navigation.navigate('BreatheScreen', { duration: 10 })} />
+            <Text style={styles.title}>Breathe</Text>
+            <View style={styles.buttonRow}>
+                <Pressable
+                    onPress={() => navigation.navigate('BreatheScreen', { duration: 1 })}
+                    style={styles.selectButton1}>
+                    <Text style={styles.buttonText}>1 min</Text>
+                </Pressable>
+
+                <Pressable
+                    onPress={() => navigation.navigate('BreatheScreen', { duration: 3 })}
+                    style={styles.selectButton2}>
+                    <Text style={styles.buttonText}>3 min</Text>
+                </Pressable>
+            </View>
+
+            <View style={styles.buttonRow}>
+                <Pressable
+                    onPress={() => navigation.navigate('BreatheScreen', { duration: 5 })}
+                    style={styles.selectButton3}>
+                    <Text style={styles.buttonText}>5 min</Text>
+                </Pressable>
+
+                <Pressable
+                    onPress={() => navigation.navigate('BreatheScreen', { duration: 10 })}
+                    style={styles.selectButton4}>
+                    <Text style={styles.buttonText}>10 min</Text>
+                </Pressable>
+            </View>
         </View>
     );
 }

@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 
 export const styles = StyleSheet.create({
@@ -9,7 +9,9 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     title: {
-        fontSize: 25,
+        fontSize: 96,
+        fontFamily: 'AlumniSansPinstripe-Regular',
+        marginBottom: 50,
     },
     bodyText: {
         alignSelf: "flex-start"
@@ -22,10 +24,99 @@ export const styles = StyleSheet.create({
         borderRadius: 15,
     },
     buttonText: {
-        fontSize: 30,
+        fontSize: 32,
         color: '#403D39',
         textAlign: 'center',
-        fontFamily: 'AlumniSansPinstripe-Regular',
+        fontFamily: 'AlumniSansInlineOne-Regular',
+    },
+    selectButton1: {
+        backgroundColor: '#D6CCC2',
+        width: 120,
+        height: 120,
+        borderRadius: 28,
+        justifyContent: 'center',
+        marginRight: 4,
+        ...Platform.select({
+            ios: {
+                shadowColor: "#000",
+                shadowOffset: {
+                    width: 0,
+                    height: 4,
+                },
+                shadowOpacity: 0.2,
+                shadowRadius: 3,
+
+                elevation: 8, // Androidissa käytetään elevation varjostukseen
+            },
+        }),
+    },
+    selectButton2: {
+        backgroundColor: '#EDEDE9',
+        width: 120,
+        height: 120,
+        borderRadius: 28,
+        justifyContent: 'center',
+        marginLeft: 4,
+        ...Platform.select({
+            ios: {
+                shadowColor: "#000",
+                shadowOffset: {
+                    width: 0,
+                    height: 4,
+                },
+                shadowOpacity: 0.2,
+                shadowRadius: 3,
+
+                elevation: 8,
+            },
+        }),
+    },
+    selectButton3: {
+        backgroundColor: '#E3D5CA',
+        width: 120,
+        height: 120,
+        borderRadius: 28,
+        justifyContent: 'center',
+        marginRight: 4,
+        ...Platform.select({
+            ios: {
+                shadowColor: "#000",
+                shadowOffset: {
+                    width: 0,
+                    height: 4,
+                },
+                shadowOpacity: 0.2,
+                shadowRadius: 3,
+
+                elevation: 8,
+            },
+        }),
+    },
+    selectButton4: {
+        backgroundColor: '#D5BDAF',
+        width: 120,
+        height: 120,
+        borderRadius: 28,
+        justifyContent: 'center',
+        marginLeft: 4,
+        ...Platform.select({
+            ios: {
+                shadowColor: "#000",
+                shadowOffset: {
+                    width: 0,
+                    height: 4,
+                },
+                shadowOpacity: 0.2,
+                shadowRadius: 3,
+
+                elevation: 8,
+            },
+        }),
+    },
+    buttonRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginVertical: 8,
     },
 
 

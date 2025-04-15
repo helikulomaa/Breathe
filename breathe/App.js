@@ -12,7 +12,8 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   // Load font
   const [fontsLoaded] = useFonts({
-    'AlumniSansPinstripe-Regular': require('./assets/fonts/AlumniSansPinstripe-Regular.ttf')
+    'AlumniSansPinstripe-Regular': require('./assets/fonts/AlumniSansPinstripe-Regular.ttf'),
+    'AlumniSansInlineOne-Regular': require('./assets/fonts/AlumniSansInlineOne-Regular.ttf'),
   });
 
   if (!fontsLoaded) {
