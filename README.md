@@ -4,4 +4,5 @@ Breathe is small mobile application that guides breathing exercises. The user se
 The project is built using React Native and Expo.
 
 
-![kuva](https://github.com/user-attachments/assets/fc6bcdf4-033d-40a4-a076-7823e7bbc6b2)
+![kuva](https://github.com/user-attachments/assets/8a5937a8-60c6-451f-aa91-b5f0f8f8df39)
+
