@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { RouteProp } from '@react-navigation/native';
@@ -16,6 +16,7 @@ const BreatheScreen = ({ navigation }) => {
   const [ongoing, setOngoing] = useState(false);
   const [showDone, setShowDone] = useState(false);
   const [isSpeechActive, setIsSpeechActive] = useState(false);
+  const [affirmation, setAffirmation] = useState('');
 
   const handleStart = () => {
     setOngoing(true);
@@ -28,6 +29,24 @@ const BreatheScreen = ({ navigation }) => {
     }
     setIsSpeechActive(prev => !prev); // Vaihtaa tilan
   };
+
+  // Haetaan satunnainen affirmaatio harjoituksen lopussa
+  const fetchAffirmation = async () => {
+    try {
+      const response = await fetch('https://www.affirmations.dev');
+      const data = await response.json();
+      setAffirmation(data.affirmation);
+    } catch (error) {
+      console.error('Error fetching affirmation:', error);
+      setAffirmation('Well done!');
+    }
+  };
+
+  useEffect(() => {
+    if (showDone) {
+      fetchAffirmation(); // Haetaan affirmaatio, kun harjoitus on valmis
+    }
+  }, [showDone]);
 
   return (
     <View style={styles.container}>
@@ -52,18 +71,18 @@ const BreatheScreen = ({ navigation }) => {
 
       {ongoing && (
         <>
-          <BreathingAnimation duration={duration * 60} onComplete={() => setShowDone(true)} isSpeechActive={isSpeechActive} />
+          <BreathingAnimation duration={duration * 12} onComplete={() => setShowDone(true)} isSpeechActive={isSpeechActive} />
         </>
       )}
 
       {showDone && (
-        <Text>Well done!</Text>
+        <Text style={styles.affirmation}>{affirmation}</Text>
       )}
       <View style={{ marginBottom: 70 }}>
         <Pressable
           onPress={() => navigation.goBack()}
           style={styles.button}>
-          <Text style={styles.buttonText2}>Cancel</Text>
+          <Text style={styles.buttonText2}>Back</Text>
         </Pressable>
       </View>
     </View>

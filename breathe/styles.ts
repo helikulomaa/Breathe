@@ -152,7 +152,17 @@ export const styles = StyleSheet.create({
     speechIcon: {
         fontSize: 30,
         color: '#403D39',
-        },
+    },
+
+    affirmation: {
+        fontSize: 40,
+        color: '#403D39',
+        textAlign: 'center',
+        fontFamily: 'AlumniSansPinstripe-Regular',
+        marginTop: 10,
+        marginBottom: 20,
+        padding: 20,
+    },
 
 
 
