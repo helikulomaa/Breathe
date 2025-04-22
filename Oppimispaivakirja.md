@@ -25,11 +25,8 @@ User Story -lista (priorisoitu)
 
 🟡 7	Käyttäjänä haluan, että voin keskeyttää ja jatkaa harjoitusta.
 
-🟡 8	Käyttäjänä haluan nähdä harjoituksen lopuksi viestin, joka kannustaa minua jatkamaan.
+🟡 8	Käyttäjänä haluan nähdä harjoituksen lopuksi satunnaisen viestin tai affirmaation, joka kannustaa minua jatkamaan.
 
-🟠 9	Käyttäjänä haluan saada satunnaisen kannustavan viestin harjoituksen lopuksi.
-
-🟠10	Käyttäjänä haluan, että viestit vaihtelevat, jotta saan vaihtelua harjoitusten lopussa.
 
 Oppeja:
 
@@ -49,7 +46,7 @@ User story "Käyttäjänä haluan valita hengitysharjoituksen pituuden, jotta vo
 
 Aloittelin animaation logikan tekemistä. Minulla oli ensin vähän haasteita, mitä tapahtuu missäkin tiedostossa ja miten tieto harjoituksen kestosta siirtyy näytöltä toiselle ja sitten animaation toteuttavaan komponenttiin.
 
-## 15.4. ja 22.4.
+## 22.4.
 
 Tuntui helpoimmalta tehdä sovelluksen tyylittelyt kuntoon ennen haastavampia logiikkaan liittyviä asioita. Poikkesin siinä hieman alkuperäisestä suunnitelmasta tehdä logiikan ensin. Tuo etenemisjärjes toimii kuitenkin selkeästi itselleni paremmin, jotta tulee sellainen olo, että tekeminen etenee. Tyylien muokkaaminen tuntui onneksi suhteellisen helpolta ja mukava huomata, että tyylien tekeminen on jo itselle helppo asia.
 
@@ -58,3 +55,8 @@ Sain tehtyä animaatiota toteuttavan logiikan valmiiksi. Muokkasin tosi paljon s
 Oppeja tekemisestä:
 - useNativeDriver liittyy animaation toimivuuteen ja suorituskykyyn. Kun se on asetettu trueksi, animaatio lasketaan natiivisti.
 - useRef luo muuttujan, jonka arvo säilyy uudelleen rendröintien ajan eikä sen muutos aiheuta renderöintiä.
+- Expo Speechin käyttö oli suoraviivaista, mutta äänet kovin robottomaisia, eikä soveltuisi tähän oikeasti.
+- Ikonitkin pitää asentaa erikseen, mutta niiden käyttöön otto on ihan helppoa.
+
+User story 2 "Käyttäjänä haluan nähdä ja kuulla ohjeet hengittämiseen, jotta voin seurata niitä helposti." toteutettu!
+User story 8 "Käyttäjänä haluan nähdä harjoituksen lopuksi satunnaisen viestin tai affirmaation, joka kannustaa minua jatkamaan." toteutettu
