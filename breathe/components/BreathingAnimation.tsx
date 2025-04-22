@@ -1,50 +1,63 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { View, Text, Animated } from 'react-native';
 import { styles } from '../styles';
 
-interface BreatingAnimationProps {
-    phaseIndex: number;
-    duration: number;
+interface AnimationProps {
+    duration: number; // Duration in seconds
+    onComplete: () => void; // Callback when the exercise completes
 }
 
-const BreathingAnimation: React.FC<BreatingAnimationProps> = ({ phaseIndex, duration }) => {
-    const [animation] = useState(new Animated.Value(0.8)); // Alustetaan koko
+const PHASES = ['Inhale', 'Hold', 'Exhale'];
+const PHASE_DURATION = 4;
+
+const BreathingAnimation: React.FC<AnimationProps> = ({ duration, onComplete }) => {
+    const animation = useRef(new Animated.Value(0.6)).current;
     const [text, setText] = useState('Inhale');
+    const [phaseIndex, setPhaseIndex] = useState(0);
+    const [elapsedTime, setElapsedTime] = useState(0);
+
+    const totalPhases = Math.ceil(duration / PHASE_DURATION); // vaiheiden määrä niin, että tulee kaikki kolme vaihetta
+    const currentPhase = useRef(0)
 
     useEffect(() => {
-        const breatheAnimation = Animated.loop(
-            Animated.sequence([
-                Animated.timing(animation, {
-                    toValue: 2, // Kasvatetaan kokoa kahdella
-                    duration: duration * 1000,
-                    useNativeDriver: false,
-                }),
-                Animated.timing(animation, {
-                    toValue: 1, // Palautetaan alkuperäiseen kokoon
-                    duration: duration * 1000,
-                    useNativeDriver: false,
-                }),
-            ])
-        );
+        const runPhase = () => {
+            const phase = PHASES[phaseIndex];
+            setText(phase);
 
-        animation.addListener(({ value }) => {
-            if (value === 0) setText('Inhale');
-            if (value === 1) setText('Hold');
-            if (value === 2) setText('Exhale');
-        });
+            // Aloita animaatio vaiheen mukaan
+            let toValue = 1.2;
+            if (phase === 'Exhale') toValue = 0.6;
 
-        breatheAnimation.start();
+            Animated.timing(animation, {
+                toValue,
+                duration: PHASE_DURATION * 1000,
+                useNativeDriver: true,
+            }).start(() => {
+                currentPhase.current += 1;
+                setElapsedTime(prev => prev + PHASE_DURATION);
 
-        return () => {
-            breatheAnimation.stop();
-            animation.removeAllListeners();
+                // Lopetetaan jos tämä oli viimeinen vaihe ja se oli Exhale
+                const isLastPhase = currentPhase.current >= totalPhases;
+                const isExhale = phase === 'Exhale';
+
+                if (isLastPhase && isExhale) {
+                    setText('Good job!');
+                    onComplete();
+                } else {
+                    // Siirrytään seuraavaan vaiheeseen
+                    setPhaseIndex(prev => (prev + 1) % PHASES.length);
+                }
+            });
         };
-    }, [animation, duration]);
+
+        runPhase();
+    }, [phaseIndex]); // Käynnistää uuden vaiheen, kun phaseIndex päivittyy
+
 
     const outerCircleRadius = 150;
-    const middleCircleRadius = animation.interpolate({
-        inputRange: [0.8, 1],
-        outputRange: [outerCircleRadius * 0.8, outerCircleRadius],
+    const middleCircleScale = animation.interpolate({
+        inputRange: [0.6, 1.2],
+        outputRange: [0.6, 1.2],
     });
     const innerCircleRadius = outerCircleRadius * 0.5;
 
@@ -55,12 +68,7 @@ const BreathingAnimation: React.FC<BreatingAnimationProps> = ({ phaseIndex, dura
                     style={[
                         styles.middleCircle,
                         {
-                            width: middleCircleRadius,
-                            height: middleCircleRadius,
-                            borderRadius: animation.interpolate({
-                                inputRange: [0.8, 1],
-                                outputRange: [outerCircleRadius * 0.4, outerCircleRadius * 0.5],
-                            }),
+                            transform: [{ scale: middleCircleScale }],
                         },
                     ]}
                 />
@@ -70,7 +78,6 @@ const BreathingAnimation: React.FC<BreatingAnimationProps> = ({ phaseIndex, dura
             </View>
         </View>
     );
-
 };
 
 export default BreathingAnimation;

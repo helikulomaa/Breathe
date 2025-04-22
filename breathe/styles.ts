@@ -150,7 +150,7 @@ export const styles = StyleSheet.create({
     // Circle styles
 
     circle: {
-        backgroundColor: '#D6CCC2',
+        backgroundColor: '#D5BDAF',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -158,13 +158,13 @@ export const styles = StyleSheet.create({
         width: 240,
         height: 240,
         borderRadius: 120,
-        backgroundColor: '#EDEDE9',
+        backgroundColor: '#D6CCC2',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
     },
     innerCircle: {
-        backgroundColor: '#D5BDAF',
+        backgroundColor: '#EDEDE9',
         justifyContent: 'center',
         alignItems: 'center',
     },
