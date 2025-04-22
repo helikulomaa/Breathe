@@ -13,6 +13,11 @@ export const styles = StyleSheet.create({
         fontFamily: 'AlumniSansPinstripe-Regular',
         marginBottom: 50,
     },
+    eTitle: {
+        fontSize: 48,
+        fontFamily: 'AlumniSansPinstripe-Regular',
+        marginBottom: 50,
+    },
     bodyText: {
         alignSelf: "flex-start"
     },
@@ -22,6 +27,20 @@ export const styles = StyleSheet.create({
         width: 300,
         height: 45,
         borderRadius: 15,
+        margin: 5,
+        ...Platform.select({
+            ios: {
+                shadowColor: "#000",
+                shadowOffset: {
+                    width: 0,
+                    height: 4,
+                },
+                shadowOpacity: 0.2,
+                shadowRadius: 3,
+
+                elevation: 8,
+            },
+        }),
     },
     buttonText: {
         fontSize: 32,
@@ -29,6 +48,13 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         fontFamily: 'AlumniSansInlineOne-Regular',
     },
+    buttonText2: {
+        fontSize: 32,
+        color: '#403D39',
+        textAlign: 'center',
+        fontFamily: 'AlumniSansPinstripe-Regular',
+    },
+
     selectButton1: {
         backgroundColor: '#D6CCC2',
         width: 120,
@@ -143,7 +169,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textCircle: {
-        fontSize: 24,
-        color: '#888',
+        fontSize: 40,
+        color: '#403D39',
+        fontFamily: 'AlumniSansPinstripe-Regular',
     },
 });

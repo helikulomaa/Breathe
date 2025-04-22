@@ -54,7 +54,9 @@ const BreatheScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text>Breathe for {duration} min</Text>
+
+      {/* Text and start button don's show during the exercise */}
+      {!ongoing && (<Text style={styles.eTitle}>Breathe for {duration} min</Text>)}
 
       {!ongoing && !showDone && (
         <Pressable onPress={handleStart} style={styles.button}>
@@ -71,11 +73,13 @@ const BreatheScreen = ({ navigation }) => {
       {showDone && (
         <Text>Well done!</Text>
       )}
-      <Pressable
-        onPress={() => navigation.goBack()}
-        style={styles.button}>
-        <Text style={styles.buttonText}>Home</Text>
-      </Pressable>
+      <View style={{ marginBottom: 70 }}>
+        <Pressable
+          onPress={() => navigation.goBack()}
+          style={styles.button}>
+          <Text style={styles.buttonText2}>Cancel</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
