@@ -1,16 +1,18 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { View, Text, Animated } from 'react-native';
 import { styles } from '../styles';
+import * as Speech from 'expo-speech';
 
 interface AnimationProps {
     duration: number; // Duration in seconds
     onComplete: () => void; // Callback when the exercise completes
+    isSpeechActive: boolean;
 }
 
 const PHASES = ['Inhale', 'Hold', 'Exhale'];
 const PHASE_DURATION = 4;
 
-const BreathingAnimation: React.FC<AnimationProps> = ({ duration, onComplete }) => {
+const BreathingAnimation: React.FC<AnimationProps> = ({ duration, onComplete, isSpeechActive }) => {
     const animation = useRef(new Animated.Value(0.6)).current;
     const [text, setText] = useState('Inhale');
     const [phaseIndex, setPhaseIndex] = useState(0);
@@ -23,6 +25,14 @@ const BreathingAnimation: React.FC<AnimationProps> = ({ duration, onComplete }) 
         const runPhase = () => {
             const phase = PHASES[phaseIndex];
             setText(phase);
+
+            if (isSpeechActive) {
+                Speech.speak(phase, {
+                    rate: 0.5,
+                    voice: 'com.apple.ttsbundle.siri_Catherine_en-AU_compact',
+                    // Karmean kuuloinen, mutta menköön harjoitustyössä :D
+                });
+            }
 
             // Aloita animaatio vaiheen mukaan
             let toValue = 1.2;
@@ -51,7 +61,7 @@ const BreathingAnimation: React.FC<AnimationProps> = ({ duration, onComplete }) 
         };
 
         runPhase();
-    }, [phaseIndex]); // Käynnistää uuden vaiheen, kun phaseIndex päivittyy
+    }, [phaseIndex, isSpeechActive]); // Käynnistää uuden vaiheen, kun phaseIndex päivittyy
 
 
     const outerCircleRadius = 150;

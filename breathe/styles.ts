@@ -144,6 +144,15 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginVertical: 8,
     },
+    speechButton: {
+        position: 'absolute',
+        top: 150,
+        right: 50,
+    },
+    speechIcon: {
+        fontSize: 30,
+        color: '#403D39',
+        },
 
 
 
