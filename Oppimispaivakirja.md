@@ -64,4 +64,8 @@ User story 8 "Käyttäjänä haluan nähdä harjoituksen lopuksi satunnaisen vie
 
 ## 22.4. Värinätoiminnan toteuttaminen
 
-React Nativen omalla Vibration-työkalulla ei pystynytkään tekemään erilaisia värinöitä iOS-laitteelle. Ilmeisesti Androidille olisi saanut, mutta koska testailen iPhonella, vaihdoin työkalun Expo Hapticsiin. 
+React Nativen omalla Vibration-työkalulla ei pystynytkään tekemään erilaisia värinöitä iOS-laitteelle. Ilmeisesti Androidille olisi saanut, mutta koska testailen iPhonella, vaihdoin työkalun Expo Hapticsiin: https://docs.expo.dev/versions/latest/sdk/haptics/
+
+## 25.4. Muistutuksen toteuttaminen
+
+Tein muistutuksen Expo Notificationilla: https://docs.expo.dev/versions/latest/sdk/notifications/. Muistutuksen ei ollutkaan ihan suoraviivaista, vaan ilmoituksen triggerin oikean tietotyypin keksiminen vei aika paljon aikaa. Tässä vaiheessa sain toteutettua muistutuksen, joka näkyy kunnolla vain jos sovellus on auki. Jos se on kiinni tai taustalla, tulee vain ilmoitus jonka klikkaus avaa sovelluksen.

@@ -1,9 +1,12 @@
 import { Text, View, Button, Pressable } from 'react-native';
 import { styles } from "../styles";
+import Reminder from '../components/Reminder';
 
 export default function HomeScreen({ navigation }) {
     return (
         <View style={styles.container}>
+
+            <Reminder />
             <Text style={styles.title}>Breathe</Text>
             <View style={styles.buttonRow}>
                 <Pressable
