@@ -23,6 +23,46 @@ const BreathingAnimation: React.FC<AnimationProps> = ({ duration, onComplete, is
     const totalPhases = Math.ceil(duration / PHASE_DURATION); // vaiheiden määrä niin, että tulee kaikki kolme vaihetta
     const currentPhase = useRef(0)
 
+    // värinä
+    const hapticInterval = useRef<NodeJS.Timeout | null>(null);
+    const startHapticFeedback = (phase: string) => {
+        if (hapticInterval.current) {
+            clearInterval(hapticInterval.current);
+            hapticInterval.current = null;
+        }
+
+        switch (phase) {
+            case 'Inhale':
+                hapticInterval.current = setInterval(() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                }, 600);
+                break;
+
+            case 'Hold':
+                hapticInterval.current = setInterval(() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                }, 1200);
+                break;
+
+            case 'Exhale':
+                hapticInterval.current = setInterval(() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+                }, 300);
+                break;
+
+            default:
+                break;
+        }
+    };
+
+    const stopHapticFeedback = () => {
+        if (hapticInterval.current) {
+            clearInterval(hapticInterval.current);
+            hapticInterval.current = null;
+        }
+    };
+
+
     useEffect(() => {
         const runPhase = () => {
             const phase = PHASES[phaseIndex];
