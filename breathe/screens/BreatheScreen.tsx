@@ -71,7 +71,7 @@ const BreatheScreen = ({ navigation }) => {
 
       {ongoing && (
         <>
-          <BreathingAnimation duration={duration * 12} onComplete={() => setShowDone(true)} isSpeechActive={isSpeechActive} />
+          <BreathingAnimation duration={duration * 60} onComplete={() => setShowDone(true)} isSpeechActive={isSpeechActive} />
         </>
       )}
 
