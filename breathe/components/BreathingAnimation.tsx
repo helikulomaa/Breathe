@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { View, Text, Animated } from 'react-native';
+import { View, Text, Animated, Platform } from 'react-native';
 import { styles } from '../styles';
 import * as Speech from 'expo-speech';
+import * as Haptics from 'expo-haptics';
+
 
 interface AnimationProps {
     duration: number; // Duration in seconds
@@ -21,10 +23,55 @@ const BreathingAnimation: React.FC<AnimationProps> = ({ duration, onComplete, is
     const totalPhases = Math.ceil(duration / PHASE_DURATION); // vaiheiden määrä niin, että tulee kaikki kolme vaihetta
     const currentPhase = useRef(0)
 
+    // värinä
+    const hapticInterval = useRef<NodeJS.Timeout | null>(null);
+    const startHapticFeedback = (phase: string) => {
+        // Tyhjennä ensin mahdollinen aiempi intervalli
+        if (hapticInterval.current) {
+            clearInterval(hapticInterval.current);
+            hapticInterval.current = null;
+        }
+
+        switch (phase) {
+            case 'Inhale':
+                // Kevyt jatkuva värinä esim. 700ms välein
+                hapticInterval.current = setInterval(() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                }, 600);
+                break;
+
+            case 'Hold':
+                // Sykähdykset 1s välein
+                hapticInterval.current = setInterval(() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                }, 1200);
+                break;
+
+            case 'Exhale':
+                // Voimakas jatkuva värinä esim. 500ms välein
+                hapticInterval.current = setInterval(() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+                }, 300);
+                break;
+
+            default:
+                break;
+        }
+    };
+
+    const stopHapticFeedback = () => {
+        if (hapticInterval.current) {
+            clearInterval(hapticInterval.current);
+            hapticInterval.current = null;
+        }
+    };
+
+
     useEffect(() => {
         const runPhase = () => {
             const phase = PHASES[phaseIndex];
             setText(phase);
+            startHapticFeedback(phase);
 
             if (isSpeechActive) {
                 Speech.speak(phase, {
@@ -53,6 +100,7 @@ const BreathingAnimation: React.FC<AnimationProps> = ({ duration, onComplete, is
                 if (isLastPhase && isExhale) {
                     setText('Good job!');
                     onComplete();
+                    stopHapticFeedback();
                 } else {
                     // Siirrytään seuraavaan vaiheeseen
                     setPhaseIndex(prev => (prev + 1) % PHASES.length);
@@ -61,6 +109,12 @@ const BreathingAnimation: React.FC<AnimationProps> = ({ duration, onComplete, is
         };
 
         runPhase();
+
+        // Lopettaa värinän ja puheen jos harjoituksesta poistutaan:
+        return () => {
+            stopHapticFeedback();
+            Speech.stop();
+        };
     }, [phaseIndex, isSpeechActive]); // Käynnistää uuden vaiheen, kun phaseIndex päivittyy
 
 
