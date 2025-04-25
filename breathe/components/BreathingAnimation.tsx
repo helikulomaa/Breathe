@@ -26,7 +26,6 @@ const BreathingAnimation: React.FC<AnimationProps> = ({ duration, onComplete, is
     // värinä
     const hapticInterval = useRef<NodeJS.Timeout | null>(null);
     const startHapticFeedback = (phase: string) => {
-        // Tyhjennä ensin mahdollinen aiempi intervalli
         if (hapticInterval.current) {
             clearInterval(hapticInterval.current);
             hapticInterval.current = null;
@@ -34,21 +33,18 @@ const BreathingAnimation: React.FC<AnimationProps> = ({ duration, onComplete, is
 
         switch (phase) {
             case 'Inhale':
-                // Kevyt jatkuva värinä esim. 700ms välein
                 hapticInterval.current = setInterval(() => {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                 }, 600);
                 break;
 
             case 'Hold':
-                // Sykähdykset 1s välein
                 hapticInterval.current = setInterval(() => {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                 }, 1200);
                 break;
 
             case 'Exhale':
-                // Voimakas jatkuva värinä esim. 500ms välein
                 hapticInterval.current = setInterval(() => {
                     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
                 }, 300);
@@ -81,7 +77,7 @@ const BreathingAnimation: React.FC<AnimationProps> = ({ duration, onComplete, is
                 });
             }
 
-            // Aloita animaatio vaiheen mukaan
+            // Animaatio
             let toValue = 1.2;
             if (phase === 'Exhale') toValue = 0.6;
 

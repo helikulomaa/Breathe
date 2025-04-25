@@ -1,9 +1,10 @@
 # Oppimispäiväkirja
 
-## 25.3.  
+## 25.3. Idean kehittäminen
+
 Sovelluksen kehittäminen alkoi sopivan kokoisen idean keksimisestä. Haasteena oli, että sovellusidean piti sisältää tiettyjä kurssin tavoitteisiin liittyviä toimintoja, kuten laiteominaisuuksien ja rajapintojen käyttöä. Ideaa oli myös haastavaa keksiä aivan tyhjästä, joten tuntui helpolta lähteä löyhästi kopioimaan jotain olemassa olevaa ideaa. Hengitysharjoitusten logiikka onkin melko samanlainen kuin Finch-nimisessä sovelluksessa olevat hengitysharjoitukset.
 
-## 8.4.  
+## 8.4. Projekti käyntiin
 
 Aloitin työskentelyn tekemällä Figmalla pienen käyttöliittymäsuunnitelman (Readme-tiedostossa). Minulle sovellusten kehittäminen on aina helpompaa visuaalinen puoli edellä kun minulla on käsitys, mitä olen lähdössä tekemään.Figmaan tehdyn suunnitelman perusteella on myös helppo myöhemmin poimia muotoilut. En ollut hetkeen käyttänyt Figmaa, joten tuli taas muisteltua, miten sinne saa lisättyä variantteja eli esim. värejä tai fontteja, mitä haluaa käyttää koko sovelluksessa. Loin myös väripaletin verkossa löytyvällä väripalettityökalulla (Coolors). Minua kiehtoi ajatus pastellisesta värimaailmasta, jossa ei ole suuria kontrasteja, mutta toki pohditutti onko kontrastit liian pieniä saavutettavuuden näkökulmasta. Päätin kuitenkin olla välittämättä siitä nyt liikaa kun se ei ole tämän kurssitehtävän ydintä. 
 
@@ -42,11 +43,11 @@ Oppeja:
 
 User story "Käyttäjänä haluan valita hengitysharjoituksen pituuden, jotta voin tehdä minulle sopivan harjoituksen" valmis. 
 
-## 11.4.
+## 11.4. Liikkeelle ajastuslogiikasta
 
 Aloittelin animaation logikan tekemistä. Minulla oli ensin vähän haasteita, mitä tapahtuu missäkin tiedostossa ja miten tieto harjoituksen kestosta siirtyy näytöltä toiselle ja sitten animaation toteuttavaan komponenttiin.
 
-## 22.4.
+## 15.4. ja 22.4. Tyylittelyt, ajastus ja animaatio kuntoon
 
 Tuntui helpoimmalta tehdä sovelluksen tyylittelyt kuntoon ennen haastavampia logiikkaan liittyviä asioita. Poikkesin siinä hieman alkuperäisestä suunnitelmasta tehdä logiikan ensin. Tuo etenemisjärjes toimii kuitenkin selkeästi itselleni paremmin, jotta tulee sellainen olo, että tekeminen etenee. Tyylien muokkaaminen tuntui onneksi suhteellisen helpolta ja mukava huomata, että tyylien tekeminen on jo itselle helppo asia.
 
@@ -60,3 +61,7 @@ Oppeja tekemisestä:
 
 User story 2 "Käyttäjänä haluan nähdä ja kuulla ohjeet hengittämiseen, jotta voin seurata niitä helposti." toteutettu!
 User story 8 "Käyttäjänä haluan nähdä harjoituksen lopuksi satunnaisen viestin tai affirmaation, joka kannustaa minua jatkamaan." toteutettu
+
+## 22.4. Värinätoiminnan toteuttaminen
+
+React Nativen omalla Vibration-työkalulla ei pystynytkään tekemään erilaisia värinöitä iOS-laitteelle. Ilmeisesti Androidille olisi saanut, mutta koska testailen iPhonella, vaihdoin työkalun Expo Hapticsiin. 
