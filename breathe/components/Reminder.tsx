@@ -1,6 +1,7 @@
 import React from 'react';
 import { Alert, Pressable, Text } from 'react-native';
 import * as Notifications from 'expo-notifications';
+import { styles } from '../styles';
 
 const Reminder: React.FC = () => {
     const handleSetReminder = async () => {
@@ -38,7 +39,10 @@ const Reminder: React.FC = () => {
         Alert.alert('Reminder set', "You'll receive a reminder in 10 seconds.");
     };
 
-    return <Pressable onPress={handleSetReminder}><Text>Remind me!</Text></Pressable>;
+    return <Pressable
+        onPress={handleSetReminder}
+        style={styles.button}
+    ><Text style={styles.buttonText}>Remind me!</Text></Pressable>;
 };
 
 export default Reminder;
