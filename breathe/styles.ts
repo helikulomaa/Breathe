@@ -163,6 +163,12 @@ export const styles = StyleSheet.create({
         marginBottom: 20,
         padding: 20,
     },
+    menuButton: {
+        position: 'absolute',
+        top: 60,
+        left: 30,
+        zIndex: 10,
+      },
 
 
 

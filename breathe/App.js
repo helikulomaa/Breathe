@@ -1,16 +1,18 @@
 import 'react-native-gesture-handler';
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './screens/HomeScreen';
 import BreatheScreen from './screens/BreatheScreen';
+import SetReminderScreen from './screens/SetReminderScreen';
+import YourExercisesScreen from './screens/YourExercisesScreen';
 import { useFonts } from 'expo-font';
-import { Text } from 'react-native';
+import { Text, Pressable, View } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import { Alert } from 'react-native';
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
 
 export default function App() {
 
@@ -54,12 +56,16 @@ export default function App() {
   }
 
   return (
+
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="BreatheScreen" component={BreatheScreen} />
-      </Stack.Navigator>
+      <Drawer.Navigator screenOptions={{ headerShown: false }}>
+        <Drawer.Screen name="Home" component={HomeScreen} options={{ drawerItemStyle: { display: 'none' } }} />
+        <Drawer.Screen name="Set Reminder" component={SetReminderScreen} />
+        <Drawer.Screen name="Your Exercises" component={YourExercisesScreen} />
+        <Drawer.Screen name="BreatheScreen" component={BreatheScreen} options={{ drawerItemStyle: { display: 'none' } }} />
+      </Drawer.Navigator>
     </NavigationContainer>
+
   );
 }
 

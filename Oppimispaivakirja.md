@@ -69,3 +69,7 @@ React Nativen omalla Vibration-työkalulla ei pystynytkään tekemään erilaisi
 ## 25.4. Muistutuksen toteuttaminen
 
 Tein muistutuksen Expo Notificationilla: https://docs.expo.dev/versions/latest/sdk/notifications/. Muistutuksen ei ollutkaan ihan suoraviivaista, vaan ilmoituksen triggerin oikean tietotyypin keksiminen vei aika paljon aikaa. Tässä vaiheessa sain toteutettua muistutuksen, joka näkyy kunnolla vain jos sovellus on auki. Jos se on kiinni tai taustalla, tulee vain ilmoitus jonka klikkaus avaa sovelluksen.
+
+## 29.4. Navigaatiotyypin vaihtaminen Draweriksi
+
+Halusin toteuttaa muistutuksen asettamisen ja omien harjoitusten tarkastelun, niin, että niihin pääsee menuvalikosta. Tuo muutos aiheutti sen, että Navigointi pitikin vaihtaa Stackista Drawer-tyyppiseksi. Tuo muutos selkeytti sitä, että navigointityypiksi pitää valita aina jokin ensisijaiseksi ja muita voisi laittaa ikäänkuin sen sisään. Nyt kuitenkin tein niin, että navigointityyppinä on kaikkialla tuo Drawer Navigation. Opin myös näkymät pitää laittaa kaikki Drawer-navigatorin sisälle, jotta ne toimivat kaikkialla, mutta ne voi asettaa erikseen pois näkyvistä valikosta laittamalla niihin "display: 'none'".

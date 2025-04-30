@@ -1,12 +1,21 @@
-import { Text, View, Button, Pressable } from 'react-native';
+import React from 'react';
+import { Text, View, Pressable } from 'react-native';
 import { styles } from "../styles";
-import Reminder from '../components/Reminder';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 
-export default function HomeScreen({ navigation }) {
+const HomeScreen: React.FC = () => {
+
+    const navigation = useNavigation<DrawerNavigationProp<any>>();
+
     return (
         <View style={styles.container}>
 
-            <Reminder />
+            <Pressable style={styles.menuButton} onPress={() => navigation.openDrawer()}>
+                <Icon name="bars" size={24} color="#333" />
+            </Pressable>
+
             <Text style={styles.title}>Breathe</Text>
             <View style={styles.buttonRow}>
                 <Pressable
@@ -38,3 +47,5 @@ export default function HomeScreen({ navigation }) {
         </View>
     );
 }
+
+export default HomeScreen;
