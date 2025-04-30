@@ -23,6 +23,11 @@ const BreatheScreen = ({ navigation }) => {
     setShowDone(false);
   };
 
+  const handleStop = () => {
+    setOngoing(false);
+    navigation.goBack();
+  };
+
   const toggleSpeech = () => {
     if (isSpeechActive) {
       Speech.stop(); // Sammuttaa ääniohjauksen
@@ -80,7 +85,7 @@ const BreatheScreen = ({ navigation }) => {
       )}
       <View style={{ marginBottom: 70 }}>
         <Pressable
-          onPress={() => navigation.goBack()}
+          onPress={() => handleStop()}
           style={styles.button}>
           <Text style={styles.buttonText2}>Back</Text>
         </Pressable>
