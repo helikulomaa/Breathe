@@ -5,7 +5,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './screens/HomeScreen';
 import BreatheScreen from './screens/BreatheScreen';
 import SetReminderScreen from './screens/SetReminderScreen';
-import YourExercisesScreen from './screens/YourExercisesScreen';
+import MyExercisesScreen from './screens/MyExercisesScreen';
 import { useFonts } from 'expo-font';
 import { Text, Pressable, View } from 'react-native';
 import * as Notifications from 'expo-notifications';
@@ -61,7 +61,7 @@ export default function App() {
       <Drawer.Navigator screenOptions={{ headerShown: false }}>
         <Drawer.Screen name="Home" component={HomeScreen} options={{ drawerItemStyle: { display: 'none' } }} />
         <Drawer.Screen name="Set Reminder" component={SetReminderScreen} />
-        <Drawer.Screen name="Your Exercises" component={YourExercisesScreen} />
+        <Drawer.Screen name="My Exercises" component={MyExercisesScreen} />
         <Drawer.Screen name="BreatheScreen" component={BreatheScreen} options={{ drawerItemStyle: { display: 'none' } }} />
       </Drawer.Navigator>
     </NavigationContainer>

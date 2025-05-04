@@ -7,6 +7,8 @@ import BreathingAnimation from '../components/BreathingAnimation';
 import { styles } from "../styles";
 import * as Speech from 'expo-speech';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { db } from '../firebaseConfig';
+import { ref, push } from 'firebase/database';
 
 type BreatheScreenRouteProp = RouteProp<RootStackParamList, 'BreatheScreen'>;
 
@@ -19,12 +21,15 @@ const BreatheScreen = ({ navigation }) => {
   const [affirmation, setAffirmation] = useState('');
 
   const handleStart = () => {
-    setOngoing(true);
     setShowDone(false);
+    setOngoing(true);
+    setAffirmation('');
   };
 
   const handleStop = () => {
     setOngoing(false);
+    setShowDone(false);
+    setAffirmation('');
     navigation.goBack();
   };
 
@@ -47,11 +52,28 @@ const BreatheScreen = ({ navigation }) => {
     }
   };
 
-  useEffect(() => {
-    if (showDone) {
-      fetchAffirmation(); // Haetaan affirmaatio, kun harjoitus on valmis
+  const handleSave = async (affirmationText: string) => {
+    const data = {
+      date: new Date().toISOString(),
+      duration: duration,
+      affirmation: affirmationText,
+    };
+
+    try {
+      await push(ref(db, 'exercises/'), data);
+      console.log('Exercise saved successfully:', data);
+    } catch (error) {
+      console.error('Saving failed', error);
     }
-  }, [showDone]);
+  };
+
+
+  useEffect(() => {
+    if (affirmation && showDone) {
+      handleSave(affirmation);
+    }
+  }, [affirmation, showDone]);
+
 
   return (
     <View style={styles.container}>
@@ -76,7 +98,13 @@ const BreatheScreen = ({ navigation }) => {
 
       {ongoing && (
         <>
-          <BreathingAnimation duration={duration * 60} onComplete={() => setShowDone(true)} isSpeechActive={isSpeechActive} />
+          <BreathingAnimation
+            duration={duration * 60}
+            onComplete={() => {
+              fetchAffirmation();
+              setShowDone(true);
+            }}
+            isSpeechActive={isSpeechActive} />
         </>
       )}
 

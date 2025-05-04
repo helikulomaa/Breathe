@@ -42,6 +42,28 @@ export const styles = StyleSheet.create({
             },
         }),
     },
+    button2: {
+        padding: 5,
+        backgroundColor: '#EDEDE9',
+        width: 300,
+        height: 45,
+        borderRadius: 15,
+        marginBottom: 30,
+        margin: 5,
+        ...Platform.select({
+            ios: {
+                shadowColor: "#000",
+                shadowOffset: {
+                    width: 0,
+                    height: 4,
+                },
+                shadowOpacity: 0.2,
+                shadowRadius: 3,
+
+                elevation: 8,
+            },
+        }),
+    },
     buttonText: {
         fontSize: 32,
         color: '#403D39',
@@ -168,7 +190,7 @@ export const styles = StyleSheet.create({
         top: 60,
         left: 30,
         zIndex: 10,
-      },
+    },
 
 
 
@@ -198,4 +220,42 @@ export const styles = StyleSheet.create({
         color: '#403D39',
         fontFamily: 'AlumniSansPinstripe-Regular',
     },
+
+    // My Exercises styles
+    exTitle: {
+        fontSize: 48,
+        fontFamily: 'AlumniSansPinstripe-Regular',
+        marginBottom: 50,
+        marginTop: 60,
+    },
+    eHeader: {
+        fontSize: 32,
+        fontFamily: 'AlumniSansPinstripe-Regular',
+        marginLeft: 30,
+        marginRight: 30,
+        marginBottom: 10,
+        textAlign: 'center',
+    },
+    listItem: {
+        padding: 12,
+        margin: 4,
+        backgroundColor: '#D6CCC2',
+        borderRadius: 10,
+    },
+    listText: {
+        fontSize: 25,
+        fontFamily: 'AlumniSansPinstripe-Regular',
+    },
+    affirmationText: {
+        marginTop: 4,
+        color: '#403D39',
+        fontFamily: 'AlumniSansPinstripe-Regular',
+        fontSize: 25,
+    },
+    summary: {
+        fontSize: 16,
+        marginBottom: 4,
+        fontFamily: 'AlumniSansPinstripe-Regular',
+    },
+
 });
