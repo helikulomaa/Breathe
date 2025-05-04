@@ -73,3 +73,21 @@ Tein muistutuksen Expo Notificationilla: https://docs.expo.dev/versions/latest/s
 ## 29.4. Navigaatiotyypin vaihtaminen Draweriksi
 
 Halusin toteuttaa muistutuksen asettamisen ja omien harjoitusten tarkastelun, niin, että niihin pääsee menuvalikosta. Tuo muutos aiheutti sen, että Navigointi pitikin vaihtaa Stackista Drawer-tyyppiseksi. Tuo muutos selkeytti sitä, että navigointityypiksi pitää valita aina jokin ensisijaiseksi ja muita voisi laittaa ikäänkuin sen sisään. Nyt kuitenkin tein niin, että navigointityyppinä on kaikkialla tuo Drawer Navigation. Opin myös näkymät pitää laittaa kaikki Drawer-navigatorin sisälle, jotta ne toimivat kaikkialla, mutta ne voi asettaa erikseen pois näkyvistä valikosta laittamalla niihin "display: 'none'".
+
+## 30.4. Navigoinnin vaihdosta aiheutunut bugi
+
+Drawer-navigointiin vaihtaminen aiheutti sen, ettei harjoitus enää nollautunut kun siitä poistutaa. Ilmeisesti Drawer-navigoinnissa tilat säilyvät erilailla kuin Stack-navigoinnissa. Sain korjattua sen yksinkertaisesti lisäämällä back-nappulaan fucktion, joka lopettaa harjoituksen. Stack-navigoinnin kanssa tuota ei tarvittu.
+
+Muuta: Olen oppinut tässä projektissa myös tekemään hallitumpia kommitteja. Minulla oli ennen tapana laittaa lisätä kaikki muutokset kaikkiin kommitteihin, mutta nykyään lisään tiedostot yksitellen ja katson ensin mitä muutoksia niihin on tullut.
+
+## 2.5. Harjoitusten tallennusten lisäys
+
+Firebasen käyttöönotossa oli suht helppoa noudattaa kurssilla olleita ohjeita.
+
+## 4.5. Viimeiset viilaukset harjoitusten listauksen ulkonäköön
+
+Flatlistin käyttö tehtyjen harjoitusten näyttämisessä aiheutti hieman haastetta asetteluissa. Olisi saattanut olla parempi käyttää erilaisia containereita ko. näkymän asetteluun, mutta ratkaisin asetteluongelman lisäämällä marginaali otsikkoon ja alhaalla olevalle nappulalle.
+
+Jos sovellusta haluaisi vielä kehittää, voisi harjoitukseen lisätä laskurin, joka näyttäisi sekunnit ja myös värinöitä voisi vielä muokata niin, että ne ovat synkassa laskurin kanssa. Lisäksi harjoituksen pausettaminen jäi vielä toteuttamatta. Muutoin sain sovelluksen sellaiseksi kuin olin ajatellutkin.
+
+ChatGPT:n käyttäminen "Scrum masterina" jäi vähän tyngäksi, sillä ilmainen versio ei jostain syystä kauhean hyvin muistanut mitä oltiin tekemässä. Mutta alkuun tekemisen suunnitteluun se oli oikein hyvä.
